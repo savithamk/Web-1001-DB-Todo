@@ -26,7 +26,7 @@ namespace Web_1001_DB_Todo_App.Pages
             _db = db;
         }
 
-
+        //To get list of todos to display in html page
         public void OnGet()
         {
             var todoQuery = _db.Todos.Select(todo => todo);
@@ -34,6 +34,7 @@ namespace Web_1001_DB_Todo_App.Pages
 
         }
 
+        //This method is responsible to add a new Todo
         public RedirectToPageResult OnPost()
         {
             todo.Status = "Incomplete";
@@ -42,6 +43,7 @@ namespace Web_1001_DB_Todo_App.Pages
             return RedirectToPage();
         }
 
+        //This method is responsible to update an existing item by marking the status as complete and a completion date
         public RedirectToPageResult OnPostEdit(int Id)
         {
             var todoToUpdate = _db.Todos.First(a => a.Id == Id);
@@ -51,6 +53,7 @@ namespace Web_1001_DB_Todo_App.Pages
             return RedirectToPage();
         }
 
+        //This method is used to delete a record from the database
         public RedirectToPageResult OnPostDelete(int Id)
         {
             _db.Remove(_db.Todos.Single(a => a.Id == Id));

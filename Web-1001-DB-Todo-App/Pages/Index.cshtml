@@ -8,6 +8,7 @@
     <br />
     <div class="row">
         <div class="col-md-4 offset-md-4">
+            <!--Inline form to add new Todo-->
             <form class="form-inline" method="post">
                 <div class="form-group mx-sm-3 mb-2">
                     <label asp-for="todo.Name" class="sr-only">Add new</label>
@@ -20,6 +21,7 @@
     </div>
     <div class="row">
         <div class="col-md-12">
+            <!--Table to display list of Todo items-->
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
@@ -36,6 +38,7 @@
                         <tr>
                             <td>
                                 <div class="col-lg-1">
+                                    <!--Form to update todo status and completion date-->
                                     <form asp-page-handler="edit" method="post">
                                         <button class="btn btn-success">Complete</button>
                                         <input type="hidden" name="Id" value="@item.Id" />
@@ -44,9 +47,10 @@
                             </td>
                             <td>@item.Name</td>
                             <td>@item.Status</td>
-                            <td  placeholder="dd-mm-yyyy">@item.CompletionDate</td>
+                            <td>@item.CompletionDate</td>
                             <td>
                                 <div class="col-lg-1">
+                                    <!--Form to delete a todo record-->
                                     <form asp-page-handler="delete" method="post">
                                         <button class="btn btn-danger">Delete</button>
                                         <input type="hidden" name="Id" value="@item.Id" />

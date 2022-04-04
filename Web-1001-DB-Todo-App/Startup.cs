@@ -25,6 +25,7 @@ namespace Web_1001_DB_Todo_App
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //Adding dbContext to the service with the required migration
             services.AddDbContext<TodoContext>(builder =>
             {
                 builder.UseSqlite("Name=ConnectionStrings:TodoDb-Sqlite", b => b.MigrationsAssembly("Web-1001-DB-Todo-Migrations"));
