@@ -1,10 +1,24 @@
 ﻿@page
+@using Web_1001_DB_Todo_Models
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "To-Do Application";
 }
+<div class="container">
+    <br />
+    <div class="row">
+        <div class="col-md-4 offset-md-4">
+            <form class="form-inline" method="post">
+                <div class="form-group mx-sm-3 mb-2">
+                    <label asp-for="todo.Name" class="sr-only">Add new</label>
+                    <input type="text" asp-for="todo.Name" class="form-control" id="newValue" placeholder="Add New">
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+                </div>
+                <button type="submit" class="btn btn-primary mb-2">Add</button>
+            </form>
+        </div>
+    </div>
+
+
 </div>
+
