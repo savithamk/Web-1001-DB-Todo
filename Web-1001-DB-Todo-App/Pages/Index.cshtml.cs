@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -25,10 +26,12 @@ namespace Web_1001_DB_Todo_App.Pages
             _db = db;
         }
 
+
         public void OnGet()
         {
             var todoQuery = _db.Todos.Select(todo => todo);
             Todos = todoQuery.ToList();
+
         }
 
         public RedirectToPageResult OnPost()
@@ -37,6 +40,23 @@ namespace Web_1001_DB_Todo_App.Pages
             _db.Add<Todo>(todo);
             _db.SaveChangesAsync();
             return RedirectToPage();
+        }
+
+        public RedirectToPageResult OnPostEdit(int Id)
+        {
+            var todoToUpdate = _db.Todos.First(a => a.Id == Id);
+            todoToUpdate.Status = "Complete";
+            todoToUpdate.CompletionDate = DateTime.Now;
+            _db.SaveChangesAsync();
+            return RedirectToPage();
+        }
+
+        public RedirectToPageResult OnPostDelete(int Id)
+        {
+            _db.Remove(_db.Todos.Single(a => a.Id == Id));
+            _db.SaveChangesAsync();
+            return RedirectToPage();
+
         }
 
     }

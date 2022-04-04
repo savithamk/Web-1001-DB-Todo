@@ -18,7 +18,47 @@
             </form>
         </div>
     </div>
-
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">To Do</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Completed Date</th>
+                        <th scope="col">#</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Todo item in Model.Todos)
+                    {
+                        <tr>
+                            <td>
+                                <div class="col-lg-1">
+                                    <form asp-page-handler="edit" method="post">
+                                        <button class="btn btn-success">Complete</button>
+                                        <input type="hidden" name="Id" value="@item.Id" />
+                                    </form>
+                                </div>
+                            </td>
+                            <td>@item.Name</td>
+                            <td>@item.Status</td>
+                            <td  placeholder="dd-mm-yyyy">@item.CompletionDate</td>
+                            <td>
+                                <div class="col-lg-1">
+                                    <form asp-page-handler="delete" method="post">
+                                        <button class="btn btn-danger">Delete</button>
+                                        <input type="hidden" name="Id" value="@item.Id" />
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
 
 </div>
 
