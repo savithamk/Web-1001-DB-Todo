@@ -35,29 +35,59 @@
                 <tbody>
                     @foreach (Todo item in Model.Todos)
                     {
-                        <tr>
-                            <td>
-                                <div class="col-lg-1">
-                                    <!--Form to update todo status and completion date-->
-                                    <form asp-page-handler="edit" method="post">
-                                        <button class="btn btn-success">Complete</button>
-                                        <input type="hidden" name="Id" value="@item.Id" />
-                                    </form>
-                                </div>
-                            </td>
-                            <td>@item.Name</td>
-                            <td>@item.Status</td>
-                            <td>@item.CompletionDate</td>
-                            <td>
-                                <div class="col-lg-1">
-                                    <!--Form to delete a todo record-->
-                                    <form asp-page-handler="delete" method="post">
-                                        <button class="btn btn-danger">Delete</button>
-                                        <input type="hidden" name="Id" value="@item.Id" />
-                                    </form>
-                                </div>
-                            </td>
-                        </tr>
+                        <!--Checking activity status and once the status is completed, disabling complete button -->
+                        if (@item.Status.Equals("Complete"))
+                        {
+                            <tr>
+                                <td>
+                                    <div class="col-lg-1">
+                                        <!--Form to update todo status and completion date-->
+                                        <form asp-page-handler="edit" method="post">
+                                            <button class="btn btn-success" disabled>Complete</button>
+                                            <input type="hidden" name="Id" value="@item.Id" />
+                                        </form>
+                                    </div>
+                                </td>
+                                <td>@item.Name</td>
+                                <td>@item.Status</td>
+                                <td>@item.CompletionDate</td>
+                                <td>
+                                    <div class="col-lg-1">
+                                        <!--Form to delete a todo record-->
+                                        <form asp-page-handler="delete" method="post">
+                                            <button class="btn btn-danger">Delete</button>
+                                            <input type="hidden" name="Id" value="@item.Id" />
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr>
+                                <td>
+                                    <div class="col-lg-1">
+                                        <!--Form to update todo status and completion date-->
+                                        <form asp-page-handler="edit" method="post">
+                                            <button class="btn btn-success">Complete</button>
+                                            <input type="hidden" name="Id" value="@item.Id" />
+                                        </form>
+                                    </div>
+                                </td>
+                                <td>@item.Name</td>
+                                <td>@item.Status</td>
+                                <td>@item.CompletionDate</td>
+                                <td>
+                                    <div class="col-lg-1">
+                                        <!--Form to delete a todo record-->
+                                        <form asp-page-handler="delete" method="post">
+                                            <button class="btn btn-danger">Delete</button>
+                                            <input type="hidden" name="Id" value="@item.Id" />
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
                     }
                 </tbody>
             </table>
